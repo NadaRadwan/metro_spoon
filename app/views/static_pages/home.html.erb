@@ -1,13 +1,10 @@
-<% provide(:title, "Home") %>
-<!DOCTYPE html>
-<html>
-  <head>
-        <title><%= yield(:title) %> | Ottawa's Spoon</title>
-  </head>
-  <body>
-    <h1>Ottawa's Spoon</h1>
-    <p>
-      This is the home page 
-    </p>
-  </body>
-</html>
+<div class="center jumbotron">
+  <h1>Welcome to Ottawa's Spoon</h1>
+
+  <h2>
+    This is the home page
+  </h2>
+
+  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+</div>
+
