@@ -15,4 +15,8 @@ module SessionsHelper
     session.delete(:rater_id)
     @current_rater = nil
   end
+
+  def current_rater?(rater)
+    rater == current_rater
+  end
 end

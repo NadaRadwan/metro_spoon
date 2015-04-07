@@ -1,0 +1,18 @@
+<% provide(:title, 'All Raters') %>
+<h1>Raters</h1>
+
+<%= will_paginate %>
+
+<ul class="raters">
+  <% @raters.each do |rater| %>
+    <li>
+      <%= link_to rater.name, rater %>
+        <% if logged_in? && current_rater.admin? && !current_rater?(rater) %>
+    | <%= link_to "delete", rater, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

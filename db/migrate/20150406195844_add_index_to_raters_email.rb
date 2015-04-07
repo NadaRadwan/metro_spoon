@@ -1,5 +1,5 @@
 class AddIndexToRatersEmail < ActiveRecord::Migration
   def change
-  	add_index :users, :email, unique: true
+  	add_index :raters, :email, unique: true
   end
 end
