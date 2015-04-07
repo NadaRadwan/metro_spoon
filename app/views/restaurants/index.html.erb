@@ -1,0 +1,18 @@
+<% provide(:title, 'All Restaurants') %>
+<h1>Restaurants</h1>
+
+<%= will_paginate %>
+
+<ul class="raters">
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

@@ -1,10 +1,11 @@
 <div class="center jumbotron">
-  <h1>Welcome to Ottawa's Spoon</h1>
+  <h1>Metro Spoon</h1>
 
   <h2>
-    This is the home page
+   Home Page
   </h2>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <% if !logged_in? %>
+  <%= link_to "Sign up now to rate!", signup_path, class: "btn btn-lg btn-primary" %>
+ <% end %>
 </div>
 
