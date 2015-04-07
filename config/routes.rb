@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   get 'raters/new'
 
   root 'static_pages#home'
 
   get 'signup'  => 'raters#new'
+
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
   resources :raters
 

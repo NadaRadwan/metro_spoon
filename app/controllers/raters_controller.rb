@@ -11,6 +11,7 @@ def show
     def create
     @rater = Rater.new(rater_params)
     if @rater.save
+      log_in @rater
     	flash[:success] = "Welcome to Ottawa's Spoon"
       	redirect_to @rater
     else
