@@ -8,6 +8,7 @@
 Rater.create!(name:  "Adnane Gasmi",
              email: "ad.gasmi@gmail.com",
              atype: "blog",
+             reputation: 4,
              password: "pass",
              password_confirmation: "pass",
              admin: true)
@@ -15,6 +16,7 @@ Rater.create!(name:  "Adnane Gasmi",
 Rater.create!(name:  "Adnane Gasmi2",
              email: "ad.gasmi2@gmail.com",
              atype: "blog",
+             reputation: 3,
              password: "pass",
              password_confirmation: "pass",
              admin: false)
@@ -22,6 +24,7 @@ Rater.create!(name:  "Adnane Gasmi2",
 Rater.create!(name:  "Adnane Gasmi3",
              email: "ad.gasmi3@gmail.com",
              atype: "critic",
+             reputation: 2,
              password: "pass",
              password_confirmation: "pass",
              admin: false)
