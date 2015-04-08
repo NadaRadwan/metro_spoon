@@ -1,0 +1,46 @@
+<% provide(:title, @location.address) %>
+<h3>
+  <%= @location.fopen %>
+</h3>
+<h3>
+  <%= @location.manager %>
+</h3>
+<h3>
+  <%= @location.phone %>
+</h3>
+<h3>
+  <%= @location.postal %>
+</h3>
+<h3>
+  <%= @location.address %>
+</h3>
+<h3>
+  <%= @location.mon %>
+</h3>
+
+<h3>
+  <%= @location.tue %>
+</h3>
+<h3>
+  <%= @location.wed %>
+</h3>
+<h3>
+  <%= @location.thurs %>
+</h3>
+<h3>
+  <%= @location.fri %>
+</h3>
+<h3>
+  <%= @location.sat %>
+</h3>
+<h3>
+  <%= @location.sun %>
+</h3>
+
+ 
+   
+<% if logged_in? && current_rater.admin?%>
+<%= link_to 'Update Location', edit_location_path(location_id: @location), class: "btn btn-primary" %>
+ <% end %>
+
+

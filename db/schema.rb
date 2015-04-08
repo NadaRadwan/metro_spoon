@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407175615) do
+ActiveRecord::Schema.define(version: 20150407212024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: true do |t|
+    t.integer  "fopen"
+    t.string   "manager"
+    t.string   "phone"
+    t.string   "postal"
+    t.string   "address"
+    t.string   "mon"
+    t.string   "tue"
+    t.string   "wed"
+    t.string   "thurs"
+    t.string   "fri"
+    t.string   "sat"
+    t.string   "sun"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "locations", ["restaurant_id", "created_at"], name: "index_locations_on_restaurant_id_and_created_at", using: :btree
+  add_index "locations", ["restaurant_id"], name: "index_locations_on_restaurant_id", using: :btree
 
   create_table "raters", force: true do |t|
     t.string   "name"
@@ -38,5 +59,7 @@ ActiveRecord::Schema.define(version: 20150407175615) do
   end
 
   add_index "restaurants", ["name"], name: "index_restaurants_on_name", unique: true, using: :btree
+
+  add_foreign_key "locations", "restaurants", name: "locations_restaurant_id_fk"
 
 end

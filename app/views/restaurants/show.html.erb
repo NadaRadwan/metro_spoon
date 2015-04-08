@@ -8,6 +8,23 @@
 <h3>
   <%= @restaurant.url %>
 </h3>
+
+    <% if @restaurant.locations.any? %>
+      <ol>
+      <% @restaurant.locations.each do |location| %>
+      <li>
+      	<%= link_to location.address, location %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", location, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </li>
+      <% end %>
+      </ol>
+      <%= will_paginate @locations %>
+    <% end %>
+
+
 <% if logged_in? && current_rater.admin?%>
 <%= link_to 'Update Restaurant', edit_restaurant_path(restaurant_id: @restaurant), class: "btn btn-primary" %>
  <% end %>

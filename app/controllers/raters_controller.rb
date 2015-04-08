@@ -54,12 +54,6 @@ private
                                    :password_confirmation)
     end
 
-    def logged_in_rater
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
 
     def correct_rater
       @rater = Rater.find(params[:id])
