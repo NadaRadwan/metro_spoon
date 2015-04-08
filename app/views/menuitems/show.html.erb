@@ -1,0 +1,23 @@
+<% provide(:title, @menuitem.name) %>
+<h3>
+  <%= @menuitem.name %>
+</h3>
+<h3>
+  <%= @menuitem.mtype %>
+</h3>
+<h3>
+  <%= @menuitem.category %>
+</h3>
+<h3>
+  <%= @menuitem.description %>
+</h3>
+<h3>
+  <%= @menuitem.price %>
+</h3>
+
+   
+<% if logged_in? && current_rater.admin?%>
+<%= link_to 'Update Menu Item', edit_menuitem_path(menuitem_id: @menuitem), class: "btn btn-primary" %>
+ <% end %>
+
+

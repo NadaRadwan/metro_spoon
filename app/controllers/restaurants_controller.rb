@@ -9,6 +9,7 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
   def show
     @restaurant = Restaurant.find(params[:id])
     @locations = @restaurant.locations.paginate(page: params[:page])
+    @menuitems = @restaurant.menuitems.paginate(page: params[:page])
   end
 
   def edit

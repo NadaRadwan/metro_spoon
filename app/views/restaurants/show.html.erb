@@ -25,6 +25,21 @@
     <% end %>
 
 
+<% if @restaurant.menuitems.any? %>
+      <ol>
+      <% @restaurant.menuitems.each do |menuitem| %>
+      <li>
+        <%= link_to menuitem.name, menuitem %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", menuitem, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </li>
+      <% end %>
+      </ol>
+      <%= will_paginate @menuitems %>
+    <% end %>
+
 <% if logged_in? && current_rater.admin?%>
 <%= link_to 'Update Restaurant', edit_restaurant_path(restaurant_id: @restaurant), class: "btn btn-primary" %>
  <% end %>

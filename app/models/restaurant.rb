@@ -1,5 +1,6 @@
 class Restaurant < ActiveRecord::Base
 	has_many :locations, dependent: :destroy
+	has_many :menuitems, dependent: :destroy
 
 	before_save { self.name = name.downcase }
 

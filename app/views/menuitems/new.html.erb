@@ -1,0 +1,38 @@
+<% provide(:title, 'Add Menu Item') %>
+<h1>Add a Menu Item</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@menuitem) do |f| %>
+     <%= render 'shared/error_messages', object: f.object %>
+
+     <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :mtype %>
+      <%= f.text_field :mtype, class: 'form-control' %>
+
+      <%= f.label :category %>
+      <%= f.text_field :category, class: 'form-control' %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+
+      <%= f.label :price %>
+      <%= f.text_field :price, class: 'form-control' %>
+      
+<br>
+  <div class="form-control">
+    <%= f.label :restaurant_id %><br>
+    <br>
+    <%= collection_select(:menuitem, :restaurant_id, Restaurant.all, :id,  
+    :name, {:prompt => false })  %>
+  </div>
+
+<br>
+<br>
+<br>
+      <%= f.submit "Create Menu Item", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
