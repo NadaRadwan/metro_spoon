@@ -9,6 +9,24 @@
   <%= @restaurant.url %>
 </h3>
 
+<h1>Menu</h1>
+<% if @restaurant.menuitems.any? %>
+      <ol>
+      <% @restaurant.menuitems.each do |menuitem| %>
+      <li>
+        <%= link_to menuitem.name, menuitem %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", menuitem, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </li>
+      <% end %>
+      </ol>
+      <%= will_paginate @menuitems %>
+    <% end %>
+
+
+  <h1>Locations</h1>
     <% if @restaurant.locations.any? %>
       <ol>
       <% @restaurant.locations.each do |location| %>
@@ -25,19 +43,20 @@
     <% end %>
 
 
-<% if @restaurant.menuitems.any? %>
+ <h1>Reviews</h1>
+    <% if @restaurant.ratings.any? %>
       <ol>
-      <% @restaurant.menuitems.each do |menuitem| %>
+      <% @restaurant.ratings.each do |rating| %>
       <li>
-        <%= link_to menuitem.name, menuitem %>
+        <%= link_to rating.comment, rating %>
         <% if logged_in? && current_rater.admin? %>
-    | <%= link_to "delete", menuitem, method: :delete,
+    | <%= link_to "delete", rating, method: :delete,
                                   data: { confirm: "You sure?" } %>
                                   <% end %>
       </li>
       <% end %>
       </ol>
-      <%= will_paginate @menuitems %>
+      <%= will_paginate @ratings %>
     <% end %>
 
 <% if logged_in? && current_rater.admin?%>
