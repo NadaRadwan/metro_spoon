@@ -7,6 +7,7 @@
   <% @raters.each do |rater| %>
     <li>
       <%= link_to rater.name, rater %>
+      -<td><%= link_to rater.atype, rater %></td> 
         <% if logged_in? && current_rater.admin? && !current_rater?(rater) %>
     | <%= link_to "delete", rater, method: :delete,
                                   data: { confirm: "You sure?" } %>
@@ -16,3 +17,7 @@
 </ul>
 
 <%= will_paginate %>
+
+
+
+

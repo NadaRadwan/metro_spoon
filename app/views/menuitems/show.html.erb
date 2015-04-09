@@ -1,20 +1,38 @@
 <% provide(:title, @menuitem.name) %>
-<h3>
+<h3>Name:
   <%= @menuitem.name %>
 </h3>
-<h3>
+<h3>Type:
   <%= @menuitem.mtype %>
 </h3>
-<h3>
+<h3>Category:
   <%= @menuitem.category %>
 </h3>
-<h3>
+<h3>Description:
   <%= @menuitem.description %>
 </h3>
-<h3>
-  <%= @menuitem.price %>
+<h3>Price:
+  <%= number_to_currency @menuitem.price %>
+  
 </h3>
 
+<h1>Reviews</h1>
+    <% if @menuitem.ratingitems.any? %>
+      <ol>
+      <% @menuitem.ratingitems.each do |rating| %>
+      <li>
+        <%= link_to rating.comment, rating %>
+        |<%= rating.rate %> stars
+        |<%= link_to rating.rater.name, rating.rater %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", rating, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </li>
+      <% end %>
+      </ol>
+      <%= will_paginate @ratingitems %>
+    <% end %>
    
 <% if logged_in? && current_rater.admin?%>
 <%= link_to 'Update Menu Item', edit_menuitem_path(menuitem_id: @menuitem), class: "btn btn-primary" %>

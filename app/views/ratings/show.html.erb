@@ -1,16 +1,19 @@
 <% provide(:title, "Review") %>
-<h4>
+<h4>Comment:
   <%= @rating.comment %>
 </h4>
-<h3>
-  <%= @rating.price %>
+<h3>Price:
+  <%= @rating.price %> stars
 </h3>
-<h3>
-  <%= @rating.food %>
+<h3>Food:
+  <%= @rating.food %> stars
 </h3>
-<h3>
-  <%= @rating.mood %>
+<h3>Mood:
+  <%= @rating.mood %> stars
 </h3>
-<h3>
-  <%= @rating.staff %>
+<h3>Staff:
+  <%= @rating.staff %> stars
+</h3>
+<h3>Posted:
+  <%= time_ago_in_words(@rating.created_at) %>
 </h3>

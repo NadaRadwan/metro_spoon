@@ -1,0 +1,10 @@
+<% provide(:title, "Review") %>
+<h4>Comment:
+  <%= @ratingitem.comment %>
+</h4>
+<h3>Rating:
+  <%= @ratingitem.rate %> stars
+</h3>
+<h3>Posted:
+  <%= time_ago_in_words(@ratingitem.created_at) %>
+</h3>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409002242) do
+ActiveRecord::Schema.define(version: 20150409010056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 20150409002242) do
 
   add_index "raters", ["email"], name: "index_raters_on_email", unique: true, using: :btree
 
+  create_table "ratingitems", force: true do |t|
+    t.integer  "rate"
+    t.text     "comment"
+    t.integer  "menuitem_id"
+    t.integer  "rater_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "ratingitems", ["menuitem_id", "rater_id"], name: "index_ratingitems_on_menuitem_id_and_rater_id", using: :btree
+  add_index "ratingitems", ["menuitem_id"], name: "index_ratingitems_on_menuitem_id", using: :btree
+  add_index "ratingitems", ["rater_id"], name: "index_ratingitems_on_rater_id", using: :btree
+
   create_table "ratings", force: true do |t|
     t.integer  "price"
     t.integer  "food"
@@ -93,6 +106,9 @@ ActiveRecord::Schema.define(version: 20150409002242) do
   add_foreign_key "locations", "restaurants", name: "locations_restaurant_id_fk"
 
   add_foreign_key "menuitems", "restaurants", name: "menuitems_restaurant_id_fk"
+
+  add_foreign_key "ratingitems", "menuitems", name: "ratingitems_menuitem_id_fk"
+  add_foreign_key "ratingitems", "raters", name: "ratingitems_rater_id_fk"
 
   add_foreign_key "ratings", "raters", name: "ratings_rater_id_fk"
   add_foreign_key "ratings", "restaurants", name: "ratings_restaurant_id_fk"

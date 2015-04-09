@@ -1,8 +1,10 @@
 class MenuitemsController < ApplicationController
 before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
 
+
   def show
     @menuitem = Menuitem.find(params[:id])
+    @ratingitems = @menuitem.ratingitems.paginate(page: params[:page])
   end
 
   def edit

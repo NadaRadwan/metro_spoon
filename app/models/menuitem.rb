@@ -1,6 +1,9 @@
 class Menuitem < ActiveRecord::Base
   belongs_to :restaurant
 
+  	has_many :ratingitems, dependent: :destroy
+	has_many :raters, through: :ratingitems
+
   validates :restaurant_id, presence: true
 
   validates :name, presence: true

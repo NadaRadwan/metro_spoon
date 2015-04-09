@@ -3,6 +3,9 @@ class Rater < ActiveRecord::Base
   has_many :ratings
   has_many :restaurants, through: :ratings
 
+  has_many :ratingitems
+  has_many :menuitems, through: :ratingitems
+
  	before_save { self.email = email.downcase }
 	validates :name, presence: true
 	validates :email, presence: true

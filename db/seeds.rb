@@ -152,7 +152,7 @@ Rater.create!(id: 15,
 
 Restaurant.create!(id: 1,
                   name: "El Camino",
-                  rtype: "Tacos, Mexican, Asian",
+                  rtype: "mexican",
                   url: "http://eatelcamino.com/wordpress/")
 
 Location.create!(id: 1,
@@ -185,3 +185,8 @@ Rating.create!(rater_id: 1,
                  staff: 5,
                  comment: "We definitely enjoyed our meal at El Camino, and we had some of the best tacos we’ve had in town. Since it is a bar, the noise level is really quite high so be prepared for that. We were told there is parking behind the restaurant, but we parked on the side streets because it was the evening. I also almost missed the restaurant because it was on the lower level. It is located right between the hair salon Le Loft, and Elgin Street Diner, just a heads up!",
                  restaurant_id: 1)
+
+Ratingitem.create!(rate: 4,
+                 comment: "I love this dish, really well prepared here!",
+                 menuitem_id: 1,
+                 rater_id: 1)

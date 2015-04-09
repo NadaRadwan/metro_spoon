@@ -1,18 +1,189 @@
 <% provide(:title, 'All Restaurants') %>
 <h1>Restaurants</h1>
 
-<%= will_paginate %>
+
 
 <ul class="raters">
+   <h2><u>Mexican: 
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "mexican" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+   </u></h2>
   <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "mexican" %>
+ 
     <li>
       <%= link_to restaurant.name, restaurant %>
         <% if logged_in? && current_rater.admin? %>
     | <%= link_to "delete", restaurant, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+    <% end %>
     </li>
   <% end %>
 </ul>
 
-<%= will_paginate %>
+<ul class="raters">
+ <h2><u>Italian:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "italian" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "italian" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="raters">
+ <h2><u>Breakfast:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "breakfast" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "breakfast" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="raters">
+ <h2><u>American:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "american" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "american" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="raters">
+ <h2><u>Chinese:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "chinese" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "chinese" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="raters">
+ <h2><u>French:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "french" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "french" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="raters">
+ <h2><u>Pub:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "pub" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "pub" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="raters">
+ <h2><u>Southern Style:
+ <% @catAvg.each do |a| %>
+ <% if a.rtype == "southern" %>
+      <%= number_to_currency a.avp %> (Average Price)
+  <% end %>
+  <% end %>
+ </u></h2>
+  <% @restaurants.each do |restaurant| %>
+  <% if restaurant.rtype == "southern" %>
+      
+    <li>
+      <%= link_to restaurant.name, restaurant %>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", restaurant, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+    <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+
+
+
+
+
+

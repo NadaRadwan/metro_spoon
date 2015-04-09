@@ -1,20 +1,41 @@
 <% provide(:title, @restaurant.name) %>
-<h3>
+<h3>Name:
   <%= @restaurant.name %>
 </h3>
-<h3>
+<h3>Type:
   <%= @restaurant.rtype %>
 </h3>
-<h3>
+<h3>Website:
   <%= @restaurant.url %>
 </h3>
 
+<h3>Most Expensive Item:
+<% @rp.each do |r| %>
+<%= r.name %> | <%= number_to_currency r.price%>
+<% end %>
+</h3>
+
+<hr>
+
 <h1>Menu</h1>
-<% if @restaurant.menuitems.any? %>
+
+
+<% if @menuitems.any? %>
+
+
+<h2><u>Starters:
+<% @typAvg.each do |t| %>
+ <% if t.mcat == "starter" %>
+      <%= number_to_currency t.avp %> (Average Price)
+  <% end %>
+  <% end %>
+</u></h2>
+<% @menuitems.each do |menuitem| %>
+       <% if menuitem.category == "starter" %>
+       
       <ol>
-      <% @restaurant.menuitems.each do |menuitem| %>
       <li>
-        <%= link_to menuitem.name, menuitem %>
+        <%= link_to menuitem.name, menuitem %> |<%=number_to_currency(menuitem.price)%>
         <% if logged_in? && current_rater.admin? %>
     | <%= link_to "delete", menuitem, method: :delete,
                                   data: { confirm: "You sure?" } %>
@@ -22,9 +43,56 @@
       </li>
       <% end %>
       </ol>
-      <%= will_paginate @menuitems %>
     <% end %>
 
+<h2><u>Main:
+<% @typAvg.each do |t| %>
+ <% if t.mcat == "main" %>
+      <%= number_to_currency t.avp %> (Average Price)
+  <% end %>
+  <% end %>
+</u></h2>
+    <% @menuitems.each do |menuitem| %>
+       <% if menuitem.category == "main" %>
+       
+      <ol>
+      <li>
+        <%= link_to menuitem.name, menuitem %> |<%=number_to_currency(menuitem.price)%>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", menuitem, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </li>
+      <% end %>
+      </ol>
+    <% end %>
+
+<h2><u>Deserts:
+<% @typAvg.each do |t| %>
+ <% if t.mcat == "desert" %>
+      <%= number_to_currency t.avp %> (Average Price)
+  <% end %>
+  <% end %>
+</u></h2>
+    <% @menuitems.each do |menuitem| %>
+       <% if menuitem.category == "desert" %>
+       
+      <ol>
+      <li>
+        <%= link_to menuitem.name, menuitem %> |<%=number_to_currency(menuitem.price)%>
+        <% if logged_in? && current_rater.admin? %>
+    | <%= link_to "delete", menuitem, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+                                  <% end %>
+      </li>
+      <% end %>
+      </ol>
+    <% end %>
+
+
+<% end %>
+
+<hr>
 
   <h1>Locations</h1>
     <% if @restaurant.locations.any? %>
@@ -42,22 +110,26 @@
       <%= will_paginate @locations %>
     <% end %>
 
+<hr>
 
  <h1>Reviews</h1>
     <% if @restaurant.ratings.any? %>
-      <ol>
-      <% @restaurant.ratings.each do |rating| %>
-      <li>
-        <%= link_to rating.comment, rating %>
-        <% if logged_in? && current_rater.admin? %>
-    | <%= link_to "delete", rating, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-                                  <% end %>
-      </li>
-      <% end %>
-      </ol>
-      <%= will_paginate @ratings %>
+   <table class="table linkss">
+    <% @restaurant.ratings.each do |rating| %>
+ <tr>
+    <td><strong><%= link_to rating.rater.name, rating.rater %></strong></td>
+    <td> <%= rating.comment%> | <%= link_to "Full Review", rating %></td> 
+    <% if logged_in? && current_rater.admin? %>
+    <td><%= link_to "delete", rating, method: :delete,
+                                  data: { confirm: "You sure?" } %></td>
+               <% end %>                    
+  </tr>
+ <% end %>
+</table>
+   <%= will_paginate @ratings %>
     <% end %>
+  
+
 
 <% if logged_in? && current_rater.admin?%>
 <%= link_to 'Update Restaurant', edit_restaurant_path(restaurant_id: @restaurant), class: "btn btn-primary" %>

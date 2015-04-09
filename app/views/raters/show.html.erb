@@ -1,16 +1,16 @@
 <% provide(:title, @rater.name) %>
-<h3>
+<h3>Name:
   <%= @rater.name %>
 </h3>
-<h3>
+<h3>Email:
   <%= @rater.email %>
 </h3>
-<h3>
+<h3>Type:
   <%= @rater.atype %>
 </h3>
-<h3>
+<h3>Reputation:
   <%= @rater.reputation %>
 </h3>
-<h3>
-  <%= @rater.created_at %>
+<h3>Account Created:
+<%= time_tag(@rater.created_at) %>
 </h3>

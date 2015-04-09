@@ -4,6 +4,10 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
 
   def index
     @restaurants = Restaurant.paginate(page: params[:page])
+     @catAvg = Restaurant.find_by_sql(
+      "Select restaurants.rtype as rtype, AVG(menuitems.price) as avp From menuitems, restaurants WHERE restaurants.id =menuitems.restaurant_id GROUP BY rtype;"
+      )
+
   end
 
   def show
@@ -11,6 +15,13 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
     @locations = @restaurant.locations.paginate(page: params[:page])
     @menuitems = @restaurant.menuitems.paginate(page: params[:page])
     @ratings = @restaurant.ratings.paginate(page: params[:page])
+    @rp = @restaurant.menuitems.where(price: @restaurant.menuitems.maximum("price"))
+
+    @typAvg = Restaurant.find_by_sql(
+      "Select menuitems.category as mcat, AVG(menuitems.price) as avp From menuitems, restaurants WHERE #{@restaurant.id} =menuitems.restaurant_id GROUP BY mcat;"
+      )
+
+
   end
 
   def edit
