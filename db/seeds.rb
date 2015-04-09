@@ -178,6 +178,7 @@ Menuitem.create!(id: 1,
                   price: "8.00",
                   restaurant_id: 1)
 
+
 Rating.create!(rater_id: 1,
                  price: 3,
                  food: 5,

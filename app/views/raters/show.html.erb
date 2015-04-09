@@ -14,3 +14,27 @@
 <h3>Account Created:
 <%= time_tag(@rater.created_at) %>
 </h3>
+
+<hr>
+<% if logged_in? && current_rater.admin? %>
+
+
+ <h1><strong><u>Stats</u></strong></h1>
+    <% if @rstat.any? %>
+    <h2>Restaurants that obtained Staff rating that is lower
+than any rating given by <%=  @rater.name %> </h2>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Review Date</th>
+  </tr>
+    <% @rstat.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= time_tag rating.rdate%></td>                   
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+    <% end %>

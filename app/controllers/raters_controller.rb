@@ -10,6 +10,11 @@ class RatersController < ApplicationController
 
   def show
     @rater = Rater.find(params[:id])
+
+    #h)Find the names and review dates of the restaurants that obtained Staff rating that is lower than any rating given by rater 
+    @rstat = Rater.find_by_sql(
+      "SELECT R.name as rname, RT.created_at as rdate FROM Restaurants R, Ratings RT WHERE R.id=RT.restaurant_id AND RT.staff <ALL( SELECT RT2.staff FROM Ratings RT2, Raters R2 WHERE RT2.rater_id=R2.id AND R.id=#{@rater.id}) ORDER BY RT.created_at;"
+      )
   end
 
   def new

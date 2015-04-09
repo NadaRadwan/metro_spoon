@@ -180,6 +180,182 @@
 </ul>
 
 
+<hr>
+
+
+<h3>Highest Rated restaurants:</h3>
+<h4>Mexican:</h4>
+    <% if @hm.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hm.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>Italian:</h4>
+  <% if @hi.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hi.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>Breakfast:</h4>
+  <% if @hb.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hb.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>American:</h4>
+  <% if @ha.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @ha.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>Chinese:</h4>
+  <% if @hc.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hc.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>French:</h4>
+  <% if @hf.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hf.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>Pub:</h4>
+  <% if @hp.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hp.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<h4>Souther Style:</h4>
+  <% if @hs.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @hs.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+
+
+<hr>
+
+
+<h3>Most Popular Restaurant Types:</h3>
+    <% if @popType.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant Type</th>
+    <th>Number of Reviews</th>
+  </tr>
+    <% @popType.each do |rating| %>
+ <tr>
+    <td><%= rating.rtype %></td>
+    <td> <%= rating.numratings%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<% if logged_in? && current_rater.admin? %>
+<hr>
+
+ <h1><strong><u>Stats</u></strong></h1>
+    <% if @rateNum.any? %>
+    <h2>Restaurant Review Numbers</h2>
+   <table class="table">
+   <tr>
+    <th>Rater</th>
+    <th>Restaurant</th>
+    <th>Number of Ratings</th>
+  </tr>
+    <% @rateNum.each do |rating| %>
+ <tr>
+    <td><%= rating.uname %></td>
+    <td> <%= rating.rtname%></td> 
+    <td> <%= rating.rcount%></td>                   
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+    <% end %>
 
 
 
