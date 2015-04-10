@@ -14,36 +14,25 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
       "SELECT restaurants.name as rtname, raters.name as uname, COUNT(*) as rcount FROM Restaurants, Raters, Ratings WHERE Restaurants.id = ratings.restaurant_id AND raters.id = ratings.rater_id GROUP BY restaurants.name, raters.name ORDER BY raters.name;"
       )
 
-     #i) Restaurants of specific types that received highest food ratings
-      @hm = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='mexican' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
+     #G) querry
+  @janRate = Restaurant.find_by_sql(
+      "SELECT R.name, R.rtype, L.phone FROM Restaurants R JOIN Locations L ON R.ID = L.restaurant_ID WHERE NOT EXISTS( SELECT R.ID FROM Ratings RT WHERE R.ID=RT.restaurant_ID AND RT.created_at BETWEEN '2015-01-01' AND '2015-01-31');"
       )
-      @hi = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='italian' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
+
+  #h)Find the names and review dates of the restaurants that obtained Staff rating that is lower than any rating given by rater 
+     @rstat = Rater.find_by_sql(
+      "SELECT R.name as rname, RT.created_at as rdate FROM Restaurants R, Ratings RT WHERE R.id=RT.restaurant_id AND RT.staff <ALL( SELECT RT2.staff FROM Ratings RT2, Raters R2 WHERE RT2.rater_id=R2.id AND R.name='#{params[:search]}') ORDER BY RT.created_at;"
       )
-       @ha = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='american' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
-      )
-      @hc = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='chinese' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
-      )
-       @hf = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='french' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
-      )
-        @hp = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='pub' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
-      )
-        @hs = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='southern' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
-      )
-        @hb = Restaurant.find_by_sql(
-      "SELECT Distinct R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='breakfast' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
-      )
+ 
+
+    
 
       #J) Most popular restaurant types
       @popType = Restaurant.find_by_sql(
-        "SELECT R.rType as rtype, Count(RT.restaurant_id) AS  numRatings FROM Ratings RT, Restaurants R WHERE R.id=RT.restaurant_id GROUP BY R.rType;"
+        "SELECT R.rType as rtype, Count(RT.restaurant_id) AS  numRatings FROM Ratings RT, Restaurants R WHERE R.id=RT.restaurant_id GROUP BY R.rType ORDER BY numRatings;"
         )
+  
+      
 
 
   end

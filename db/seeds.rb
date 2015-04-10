@@ -15,7 +15,7 @@ Rater.create!(id: 25,
              admin: true)
 
 Rater.create!(id: 1 ,
-            name:  "Michael's Blog",
+            name:  "Michaels Blog",
              email: "mckl_90@hotmail.com",
              atype: "blog",
              reputation: 1,

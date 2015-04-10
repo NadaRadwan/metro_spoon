@@ -9,3 +9,56 @@
  <% end %>
 </div>
 
+<h2>Select Restaurant Category to View Managers:</h2>
+   <%= form_tag root_path, :method => "get" do %>
+  <p>
+    <%= label :search, 'Type of restaurant:' %>
+     <%= select_tag :search, options_from_collection_for_select(Restaurant.all, :rtype, :rtype, params[:search]), include_blank: true %>
+    </p>
+    <p>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>
+  </p>
+<% end %>
+
+  <% if @managerType.any? %>
+   <table class="table">
+   <tr>
+    <th>Manager</th>
+    <th>Year Open</th>
+  </tr>
+    <% @managerType.each do |m| %>
+ <tr>
+    <td><%= m.manager %></td>
+    <td> <%= m.fopen%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<hr>
+
+<h2>Select Type to View Highest Food Rated Restaurants:</h2>
+   <%= form_tag root_path, :method => "get" do %>
+  <p>
+    <%= label :search2, 'Type of restaurant:' %>
+     <%= select_tag :search2, options_from_collection_for_select(Restaurant.all, :rtype, :rtype, params[:search2]), include_blank: true %>
+    </p>
+    <p>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>
+  </p>
+<% end %>
+
+    <% if @highFoodRating.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Rater's Name</th>
+  </tr>
+    <% @highFoodRating.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.rtname%></td>                    
+  </tr>
+<% end %>
+</table>
+<% end %>

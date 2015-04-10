@@ -183,141 +183,9 @@
 <hr>
 
 
-<h3>Highest Rated restaurants:</h3>
-<h4>Mexican:</h4>
-    <% if @hm.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hm.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>Italian:</h4>
-  <% if @hi.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hi.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>Breakfast:</h4>
-  <% if @hb.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hb.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>American:</h4>
-  <% if @ha.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @ha.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>Chinese:</h4>
-  <% if @hc.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hc.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>French:</h4>
-  <% if @hf.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hf.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>Pub:</h4>
-  <% if @hp.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hp.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
-
-<h4>Souther Style:</h4>
-  <% if @hs.any? %>
-   <table class="table">
-   <tr>
-    <th>Restaurant</th>
-    <th>Rater's Name</th>
-  </tr>
-    <% @hs.each do |rating| %>
- <tr>
-    <td><%= rating.rname %></td>
-    <td> <%= rating.rtname%></td>                    
-  </tr>
-<% end %>
-</table>
-<% end %>
 
 
-
-<hr>
-
-
-<h3>Most Popular Restaurant Types:</h3>
+<h3>Most Popular Restaurant Types Based on Number of Received Reviews:</h3>
     <% if @popType.any? %>
    <table class="table">
    <tr>
@@ -338,23 +206,73 @@
 
  <h1><strong><u>Stats</u></strong></h1>
     <% if @rateNum.any? %>
-    <h2>Restaurant Review Numbers</h2>
+    <h2>Total number of rating for each restaurant, for each rater:</h2>
    <table class="table">
    <tr>
-    <th>Rater</th>
     <th>Restaurant</th>
+    <th>Rater</th>
     <th>Number of Ratings</th>
   </tr>
     <% @rateNum.each do |rating| %>
  <tr>
-    <td><%= rating.uname %></td>
-    <td> <%= rating.rtname%></td> 
+    <td><%= rating.rtname %></td>
+    <td> <%= rating.uname%></td> 
     <td> <%= rating.rcount%></td>                   
   </tr>
 <% end %>
 </table>
 <% end %>
 
+<br><br>
+
+    <% if @janRate.any? %>
+    <h2>Restaurants That Have Not Been rated in January 2015:</h2>
+   <table class="table">
+   <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Phone Number</th>
+  </tr>
+    <% @janRate.each do |rating| %>
+ <tr>
+    <td><%= rating.name %></td>
+    <td> <%= rating.rtype%></td> 
+    <td> <%= rating.phone%></td>                   
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<br><br>
+
+<h2>Names and Opening Dates of the Restaurants That Obtained Staff Rating that is Lower
+Than Any Rating Given by the Following Rater:</h2>
+   <%= form_tag restaurants_path, :method => "get" do %>
+  <p>
+    <%= label :search, 'Type of restaurant:' %>
+    <%= select_tag :search, options_from_collection_for_select(Rater.all, :name, :name, params[:search]), include_blank: true %>
+    </p>
+    <p>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>
+  </p>
+<% end %>
+
+    <% if @rstat.any? %>
+   <table class="table">
+   <tr>
+    <th>Restaurant</th>
+    <th>Review Date</th>
+  </tr>
+    <% @rstat.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= time_tag rating.rdate%></td                 
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<br><br>
     <% end %>
 
 
