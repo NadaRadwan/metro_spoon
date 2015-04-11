@@ -19,5 +19,122 @@
 <%= will_paginate %>
 
 
+<% if logged_in? && current_rater.admin? %>
+<hr>
+<% if @foodAndMood.any? %>
+    <h2>Raters That Give the Highest Overall Ratings in
+Terms of the Food <u>AND</u> the Mood of restaurant:</h2>
+   <table class="table">
+   <tr>
+    <th>Rater</th>
+    <th>Restaurant</th>
+    <th>Rating Date</th>
+    <th>Overall Rating</th>
+    <th>Rater's Reputation</th>
+    <th>Rater's Join Date</th>
+  </tr>
+    <% @foodAndMood.each do |rating| %>
+ <tr>
+    <td><%= rating.rname %></td>
+    <td> <%= rating.restname%></td> 
+    <td> <%= time_tag rating.ratcreat%></td> 
+    <td><%= rating.overallrating %></td>
+    <td> <%= rating.reputation%></td> 
+    <td> <%= time_tag rating.raterdate%></td>          
+    </tr>
+<% end %>
+</table>
+<% end %>
 
+<br><br>
+
+<% if @foodOrMood.any? %>
+    <h2>Raters That Give the Highest Overall Ratings in
+Terms of the Food <u>OR</u> the Mood of restaurant:</h2>
+   <table class="table">
+   <tr>
+    <th>Rater</th>
+    <th>Restaurant</th>
+    <th>Rating Date</th>
+    <th>Rater's Reputation</th>
+    <th>Food Rating</th>
+    <th>Mood Rating</th>
+  </tr>
+    <% @foodOrMood.each do |rating| %>
+ <tr>
+    <td><%= rating.rater %></td>
+    <td> <%= rating.rest%></td> 
+    <td> <%= time_tag rating.created_at%></td> 
+    <td><%= rating.reputation %></td>
+    <td> <%= rating.food%></td> 
+    <td> <%= rating.mood%></td>          
+    </tr>
+<% end %>
+</table>
+<% end %>
+
+
+<h2>Raters That Rated Selected Restaurant the Most Frequently:</h2>
+   <%= form_tag raters_path, :method => "get" do %>
+  <p>
+    <%= label :search, 'Restaurant Name:' %>
+     <%= select_tag :search, options_from_collection_for_select(Restaurant.all, :name, :name, params[:search]), include_blank: true %>
+    </p>
+    <p>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>
+  </p>
+<% end %>
+
+  <% if @freqRating.any? %>
+   <table class="table">
+   <tr>
+    <th>Rater's Name</th>
+    <th>Reputation</th>
+    <th>Comment</th>
+    <th>Menu Item</th>
+  </tr>
+    <% @freqRating.each do |m| %>
+ <tr>
+    <td><%= m.ratname %></td>
+    <td> <%= m.reputation%></td>    
+    <td> <%= m.comment%></td>
+    <td> <%= m.mname%></td>                
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<br><br>
+
+<h2>Raters Who Gave Ratings That Are Lower Than That of Selected Rater:</h2>
+   <%= form_tag raters_path, :method => "get" do %>
+  <p>
+    <%= label :search2, 'Rater Name:' %>
+     <%= select_tag :search2, options_from_collection_for_select(Rater.all, :name, :name, params[:search2]), include_blank: true %>
+    </p>
+    <p>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>
+  </p>
+<% end %>
+
+  <% if @lowRating.any? %>
+   <table class="table">
+   <tr>
+    <th>Rater's Name</th>
+    <th>Overall Rating</th>
+    <th>Email</th>
+  </tr>
+    <% @lowRating.each do |m| %>
+ <tr>
+    <td><%= m.ratname %></td>
+    <td> <%= m.overallrating%></td>    
+    <td> <%= m.email%></td>               
+  </tr>
+<% end %>
+</table>
+<% end %>
+
+<br><br>
+
+<% end %>
 
