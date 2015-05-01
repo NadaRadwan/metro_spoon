@@ -77,7 +77,7 @@ Terms of the Food <u>OR</u> the Mood of restaurant:</h2>
 <h2>Raters That Rated Selected Restaurant the Most Frequently:</h2>
    <%= form_tag raters_path, :method => "get" do %>
   <p>
-    <%= label :search, 'Restaurant Name:' %>
+    <%= label :search, 'Rater Name:' %>
      <%= select_tag :search, options_from_collection_for_select(Restaurant.all, :name, :name, params[:search]), include_blank: true %>
     </p>
     <p>

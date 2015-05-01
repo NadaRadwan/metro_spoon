@@ -6,8 +6,19 @@
     <%= form_for(@location) do |f| %>
      <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :fopen %>
-      <%= f.text_field :fopen, class: 'form-control' %>
+     <br>
+      <div class="form-control">
+    <%= f.label :restaurant_id %><br>
+    <br>
+    <%= collection_select(:location, :restaurant_id, Restaurant.all, :id,  
+    :name, {:prompt => false })  %>
+  </div>
+
+<br>
+<br>
+
+      <%= f.label :fopen, 'Year Location Opened' %>
+      <%=f.select(:fopen, 1900..Time.now.year)%>
 
       <%= f.label :manager %>
       <%= f.text_field :manager, class: 'form-control' %>
@@ -41,16 +52,7 @@
 
       <%= f.label :sun %>
       <%= f.text_field :sun, class: 'form-control' %>
-<br>
-      <div class="form-control">
-    <%= f.label :restaurant_id %><br>
-    <br>
-    <%= collection_select(:location, :restaurant_id, Restaurant.all, :id,  
-    :name, {:prompt => false })  %>
-  </div>
 
-<br>
-<br>
 <br>
       <%= f.submit "Create Restaurant", class: "btn btn-primary" %>
     <% end %>

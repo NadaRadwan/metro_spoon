@@ -11,8 +11,5 @@ class StaticPagesController < ApplicationController
       "SELECT R.name as rname, RR.name as rtname, R.rtype as rtype FROM Restaurants R, Ratings RT, Raters RR WHERE R.id=RT.restaurant_id AND RT.rater_id=RR.id AND R.rType='#{params[:search2]}' AND RT.food>=ALL( SELECT RT2.food FROM Ratings RT2);"
       )
 
-  	  
-
-
   end
 end

@@ -6,14 +6,23 @@
     <%= form_for(@menuitem) do |f| %>
      <%= render 'shared/error_messages', object: f.object %>
 
+     <br>
+ 
+    <%= f.label :restaurant_id, 'Restaurant:' %><br>
+   
+    <%= collection_select(:menuitem, :restaurant_id, Restaurant.all, :id,  
+    :name, {:prompt => false })  %>
+
+
+  <%= f.label :mtype, 'Menu Item Type:' %><br>
+   <%=f.select(:mtype, options_for_select([['Food', 'food'],['Drink','drink']]))%>
+
      <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :mtype %>
-      <%= f.text_field :mtype, class: 'form-control' %>
 
-      <%= f.label :category %>
-      <%= f.text_field :category, class: 'form-control' %>
+    <%= f.label :category, 'Menu Item Category:' %><br>
+    <%=f.select(:category, options_for_select([['Starter', 'starter'],['Main','main'],['Desert','desert']]))%>
 
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>
@@ -21,16 +30,7 @@
       <%= f.label :price %>
       <%= f.text_field :price, class: 'form-control' %>
       
-<br>
-  <div class="form-control">
-    <%= f.label :restaurant_id %><br>
-    <br>
-    <%= collection_select(:menuitem, :restaurant_id, Restaurant.all, :id,  
-    :name, {:prompt => false })  %>
-  </div>
 
-<br>
-<br>
 <br>
       <%= f.submit "Create Menu Item", class: "btn btn-primary" %>
     <% end %>

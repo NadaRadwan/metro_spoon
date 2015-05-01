@@ -1,28 +1,14 @@
-== README
+This is a web application that allows users to view and rate restaurants.
+Visitors can can browse restaurants, as well browse based on certain criteria, such as highest rated type of restaurant, or most popular restaurants based on number of received reviews   
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+In this application Admins are able to:
 
-Things you may want to cover:
+- Post restaurants, as well as their menu items so that reviewers can rate them
 
-* Ruby version
+- View certain statistics about the restaurants and reviews. Such as: viewing the reviewer that reviewed a certain restaurant the most frequently, viewing the reviewers that consistently give the lowest reviews, or restaurants that have not been reviewed since a particular date.  
 
-* System dependencies
+Reviewers  are able to:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Review the restaurant as well as individual menu items served at the restaurant
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

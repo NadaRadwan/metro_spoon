@@ -7,7 +7,7 @@
    <h2><u>Mexican: 
  <% @catAvg.each do |a| %>
  <% if a.rtype == "mexican" %>
-      <%= number_to_currency a.avp %> (Average Price)
+     <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
    </u></h2>
@@ -29,7 +29,7 @@
  <h2><u>Italian:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "italian" %>
-      <%= number_to_currency a.avp %> (Average Price)
+        <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -51,7 +51,7 @@
  <h2><u>Breakfast:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "breakfast" %>
-      <%= number_to_currency a.avp %> (Average Price)
+        <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -73,7 +73,7 @@
  <h2><u>American:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "american" %>
-      <%= number_to_currency a.avp %> (Average Price)
+        <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -95,7 +95,7 @@
  <h2><u>Chinese:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "chinese" %>
-      <%= number_to_currency a.avp %> (Average Price)
+        <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -117,7 +117,7 @@
  <h2><u>French:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "french" %>
-      <%= number_to_currency a.avp %> (Average Price)
+       <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -139,7 +139,7 @@
  <h2><u>Pub:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "pub" %>
-      <%= number_to_currency a.avp %> (Average Price)
+        <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -161,7 +161,7 @@
  <h2><u>Southern Style:
  <% @catAvg.each do |a| %>
  <% if a.rtype == "southern" %>
-      <%= number_to_currency a.avp %> (Average Price)
+        <h4> <%= number_to_currency a.avp %> (Average Price)</h4>
   <% end %>
   <% end %>
  </u></h2>
@@ -249,7 +249,7 @@
 Than Any Rating Given by the Following Rater:</h2>
    <%= form_tag restaurants_path, :method => "get" do %>
   <p>
-    <%= label :search, 'Type of restaurant:' %>
+    <%= label :search, 'Rater Name:' %>
     <%= select_tag :search, options_from_collection_for_select(Rater.all, :name, :name, params[:search]), include_blank: true %>
     </p>
     <p>

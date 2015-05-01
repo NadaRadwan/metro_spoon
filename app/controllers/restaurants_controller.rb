@@ -29,7 +29,7 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
 
       #J) Most popular restaurant types
       @popType = Restaurant.find_by_sql(
-        "SELECT R.rType as rtype, Count(RT.restaurant_id) AS  numRatings FROM Ratings RT, Restaurants R WHERE R.id=RT.restaurant_id GROUP BY R.rType ORDER BY numRatings;"
+        "SELECT R.rType as rtype, Count(RT.restaurant_id) AS  numRatings FROM Ratings RT, Restaurants R WHERE R.id=RT.restaurant_id GROUP BY R.rType ORDER BY numRatings DESC;"
         )
   
       
@@ -70,6 +70,7 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
   end
 
   def create
+    ActiveRecord::Base.connection.reset_pk_sequence!('restaurants')
   	@restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       	flash[:success] = "Restaurant Added"

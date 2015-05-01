@@ -28,9 +28,10 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
   end
 
   def create
+    ActiveRecord::Base.connection.reset_pk_sequence!('menuitems')
   	@menuitem = Menuitem.new(menuitem_params)
     if @menuitem.save
-      	flash[:success] = "Men Item Added"
+      	flash[:success] = "Menu Item Added"
       	redirect_to @menuitem.restaurant
     else
       	render 'menuitems/new'

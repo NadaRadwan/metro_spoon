@@ -33,7 +33,7 @@
 <% @menuitems.each do |menuitem| %>
        <% if menuitem.category == "starter" %>
        
-      <ol>
+      <ul>
       <li>
         <%= link_to menuitem.name, menuitem %> |<%=number_to_currency(menuitem.price)%>
         <% if logged_in? && current_rater.admin? %>
@@ -42,7 +42,7 @@
                                   <% end %>
       </li>
       <% end %>
-      </ol>
+      </ul>
     <% end %>
 
 <h2><u>Main:
@@ -55,7 +55,7 @@
     <% @menuitems.each do |menuitem| %>
        <% if menuitem.category == "main" %>
        
-      <ol>
+      <ul>
       <li>
         <%= link_to menuitem.name, menuitem %> |<%=number_to_currency(menuitem.price)%>
         <% if logged_in? && current_rater.admin? %>
@@ -64,20 +64,20 @@
                                   <% end %>
       </li>
       <% end %>
-      </ol>
+      </ul>
     <% end %>
 
 <h2><u>Deserts:
 <% @typAvg.each do |t| %>
- <% if t.mcat == "desert" %>
+ <% if t.mcat == "dessert" %>
       <%= number_to_currency t.avp %> (Average Price)
   <% end %>
   <% end %>
 </u></h2>
     <% @menuitems.each do |menuitem| %>
-       <% if menuitem.category == "desert" %>
+       <% if menuitem.category == "dessert" %>
        
-      <ol>
+      <ul>
       <li>
         <%= link_to menuitem.name, menuitem %> |<%=number_to_currency(menuitem.price)%>
         <% if logged_in? && current_rater.admin? %>
@@ -86,7 +86,7 @@
                                   <% end %>
       </li>
       <% end %>
-      </ol>
+      </ul>
     <% end %>
 
 
@@ -96,7 +96,7 @@
 
   <h1>Locations</h1>
     <% if @restaurant.locations.any? %>
-      <ol>
+      <ul>
       <% @restaurant.locations.each do |location| %>
       <li>
       	<%= link_to location.address, location %>
@@ -106,7 +106,7 @@
                                   <% end %>
       </li>
       <% end %>
-      </ol>
+      </ul>
       <%= will_paginate @locations %>
     <% end %>
 

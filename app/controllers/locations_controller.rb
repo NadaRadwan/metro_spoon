@@ -27,6 +27,7 @@ before_action :logged_in_rater, only: [:edit, :new, :update, :create, :destroy]
   end
 
   def create
+    ActiveRecord::Base.connection.reset_pk_sequence!('locations')
   	@location = Location.new(location_params)
     if @location.save
       	flash[:success] = "locatiom Added"

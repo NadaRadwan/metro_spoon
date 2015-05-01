@@ -39,6 +39,7 @@ class RatersController < ApplicationController
   end
 
   def create
+    ActiveRecord::Base.connection.reset_pk_sequence!('raters')
     @rater = Rater.new(rater_params)
     if @rater.save
       log_in @rater

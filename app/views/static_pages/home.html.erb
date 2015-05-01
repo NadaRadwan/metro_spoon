@@ -13,7 +13,7 @@
    <%= form_tag root_path, :method => "get" do %>
   <p>
     <%= label :search, 'Type of restaurant:' %>
-     <%= select_tag :search, options_from_collection_for_select(Restaurant.all, :rtype, :rtype, params[:search]), include_blank: true %>
+      <%=select_tag(:search, options_for_select([['Mexican', 'mexican'],['Breakfast','breakfast'],['Italian','italian'],['American', 'american'],['Pub','pub'],['Southern','southern'],['French','french'],['Chinese','chinese']]))%>
     </p>
     <p>
     <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>
@@ -41,7 +41,7 @@
    <%= form_tag root_path, :method => "get" do %>
   <p>
     <%= label :search2, 'Type of restaurant:' %>
-     <%= select_tag :search2, options_from_collection_for_select(Restaurant.all, :rtype, :rtype, params[:search2]), include_blank: true %>
+     <%=select_tag(:search2, options_for_select([['Mexican', 'mexican'],['Breakfast','breakfast'],['Italian','italian'],['American', 'american'],['Pub','pub'],['Southern','southern'],['French','french'],['Chinese','chinese']]))%>
     </p>
     <p>
     <%= submit_tag "Search", :name => nil, class: "btn btn-warning" %>

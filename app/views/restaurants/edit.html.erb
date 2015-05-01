@@ -9,10 +9,10 @@
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :rtype %>
-      <%= f.text_field :rtype, class: 'form-control' %>
-
-      <%= f.label :url %>
+      <%= f.label :rtype, 'Restaurant Type:' %>
+      <%=f.select(:rtype, options_for_select([['Mexican', 'mexican'],['Breakfast','breakfast'],['Italian','italian'],['American', 'american'],['Pub','pub'],['Southern','southern'],['French','french'],['Chinese','chinese']]))%>
+      
+      <%= f.label :url, 'Website' %>
       <%= f.text_field :url, class: 'form-control' %>
       
 <br>
