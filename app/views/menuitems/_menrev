@@ -1,0 +1,21 @@
+<h1>Review This Menu Item</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for :ratingitem, :url=> {:controller => 'ratingitems', :action => 'create'} do |f| %>
+   
+
+      <%= f.label :comment, 'Comments' %>
+      <%= f.text_area :comment, class: 'form-control' %>
+
+       <%= f.label :rate, 'Rating' %>
+      <%=f.select(:rate, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
+      
+
+      <%= f.hidden_field :menuitem_id , :value => params[:id]%>
+<br>
+<br>
+      <%= f.submit "Submit Review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

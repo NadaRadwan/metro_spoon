@@ -16,13 +16,22 @@
   
 </h3>
 
+<hr>
+<% if logged_in? %>
+<%= render 'menrev'%>
+ <% else %>
+         <u><strong> <%= link_to "Log In To Review This Menu Item", login_path %> </strong></u>
+ <% end %>
+ <hr>
+
 <h1>Reviews</h1>
     <% if @menuitem.ratingitems.any? %>
       <ol>
       <% @menuitem.ratingitems.each do |rating| %>
       <li>
-        <%= link_to rating.comment, rating %>
-        |<%= rating.rate %> stars
+        <%= rating.comment %>
+        |<%= pluralize(rating.rate,'star') %> 
+        |Review posted <%= time_ago_in_words rating.created_at %> ago
         |<%= link_to rating.rater.name, rating.rater %>
         <% if logged_in? && current_rater.admin? %>
     | <%= link_to "delete", rating, method: :delete,

@@ -3,16 +3,16 @@
   <%= @rating.comment %>
 </h4>
 <h3>Price:
-  <%= @rating.price %> stars
+  <%= pluralize(@rating.price, 'star') %> 
 </h3>
 <h3>Food:
-  <%= @rating.food %> stars
+  <%= pluralize(@rating.food, 'star') %> 
 </h3>
 <h3>Mood:
-  <%= @rating.mood %> stars
+  <%= pluralize(@rating.mood,'star') %> 
 </h3>
 <h3>Staff:
-  <%= @rating.staff %> stars
+  <%= pluralize(@rating.staff,'star') %> 
 </h3>
 <h3>Posted:
   <%= time_ago_in_words(@rating.created_at) %>

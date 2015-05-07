@@ -1,13 +1,9 @@
 class RatingsController < ApplicationController
 
-	before_action :logged_in_rater, only: [:destroy]
+	before_action :logged_in_rater, only: [:destroy, :create]
   def show
     @rating = Rating.find(params[:id])
   end
-
-  def new
-    	@rating = Rating.new
-	end
 
   def create
     ActiveRecord::Base.connection.reset_pk_sequence!('ratings')
@@ -19,7 +15,7 @@ class RatingsController < ApplicationController
       	flash[:success] = "Restaurant Successfully rated"
       	redirect_to @rating.restaurant
     else
-      	render 'ratings/new'
+      	flash[:danger] = "Error, try again"
     end
   end
 

@@ -5,19 +5,19 @@
     <%= form_for :rating, :url=> {:controller => 'ratings', :action => 'create'} do |f| %>
    
 
-      <%= f.label :comment %>
+      <%= f.label :comment, 'Comments' %>
       <%= f.text_area :comment, class: 'form-control' %>
 
        <%= f.label :price, 'Price Rating' %>
       <%=f.select(:price, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
       
-       <%= f.label :food, 'Price Rating' %>
+       <%= f.label :food, 'Food Rating' %>
       <%=f.select(:food, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
 
-        <%= f.label :mood, 'Price Rating' %>
+        <%= f.label :mood, 'Mood Rating' %>
       <%=f.select(:mood, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
 
-        <%= f.label :staff, 'Price Rating' %>
+        <%= f.label :staff, 'Staff Rating' %>
       <%=f.select(:staff, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
 
       <%= f.hidden_field :restaurant_id , :value => params[:id]%>
