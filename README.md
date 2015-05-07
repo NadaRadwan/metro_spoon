@@ -1,4 +1,7 @@
 This is a web application that allows users to view and rate restaurants.
+
+Application uses PostgreSQL for both production and development. So when running the app locally, make sure you also start your postgresql server along with the webrick server. 
+
 Visitors can can browse restaurants, as well browse based on certain criteria, such as highest rated type of restaurant, or most popular restaurants based on number of received reviews   
 
 In this application Admins are able to:

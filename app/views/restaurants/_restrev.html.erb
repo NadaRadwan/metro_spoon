@@ -1,0 +1,29 @@
+<h1>Submit your Restaurant Review</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for :rating, :url=> {:controller => 'ratings', :action => 'create'} do |f| %>
+   
+
+      <%= f.label :comment %>
+      <%= f.text_area :comment, class: 'form-control' %>
+
+       <%= f.label :price, 'Price Rating' %>
+      <%=f.select(:price, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
+      
+       <%= f.label :food, 'Price Rating' %>
+      <%=f.select(:food, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
+
+        <%= f.label :mood, 'Price Rating' %>
+      <%=f.select(:mood, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
+
+        <%= f.label :staff, 'Price Rating' %>
+      <%=f.select(:staff, options_for_select([['1', '1'],['2','2'],['3','3'],['4','4'],['5','5']]))%>
+
+      <%= f.hidden_field :restaurant_id , :value => params[:id]%>
+<br>
+<br>
+      <%= f.submit "Submit Review", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

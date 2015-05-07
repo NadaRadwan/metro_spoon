@@ -111,6 +111,11 @@
     <% end %>
 
 <hr>
+<% if logged_in? %>
+<%= render 'restrev'%>
+ <% else %>
+         <u><strong> <%= link_to "Log In To Review The Restaurant", login_path %> </strong></u>
+ <% end %>
 
  <h1>Reviews</h1>
     <% if @restaurant.ratings.any? %>
